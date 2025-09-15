@@ -369,7 +369,7 @@ SceOff UmdVfat_IoLseek(PspIoDrvFileArg *arg, SceOff ofs, int whence)
     return (umd_vfat_ptr*0x200);
 }
 
-static void segment_patch(SceModule2 *mod)
+static void segment_patch(SceModule *mod)
 {
     int i;
     for(i=0;i < mod->nsegment;i++)
@@ -411,7 +411,7 @@ int pspUsbDeviceSetDevice(u32 unit, int ronly, int unassign_mask)
 
         if( psp_model == PSP_GO )
         {
-        	SceModule2 *eflash = (SceModule2*)sceKernelFindModuleByName("sceUSBStorEFlash_Driver");
+        	SceModule *eflash = (SceModule*)sceKernelFindModuleByName("sceUSBStorEFlash_Driver");
         	if( eflash != NULL )
         	{
         		segment_patch( eflash );
