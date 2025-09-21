@@ -42,7 +42,7 @@ int sceNandEraseIplBlockWithRetry(u32 ppn)
         return -1;
     }
 
-    return sceNandEraseBlockWithRetry(ppn);
+    return sceNandEraseIplBlockWithRetry(ppn);
 }
 
 int sceNandWriteIplBlockWithVerify(u32 ppn, void *user, void *spare)
@@ -53,7 +53,7 @@ int sceNandWriteIplBlockWithVerify(u32 ppn, void *user, void *spare)
         return -1;
     }
 
-    return sceNandWriteBlockWithVerify(ppn, user, spare);
+    return sceNandWriteIplBlockWithVerify(ppn, user, spare);
 }
 
 int pspIplGetIpl(u8 *buf)
@@ -65,7 +65,7 @@ int pspIplGetIpl(u8 *buf)
     for (block = 4; block < 0x0C; block++)
     {
         ppn = block*PSP_NAND_PAGES_PER_BLOCK;		
-        res = sceNandReadPagesRawAll(ppn, user, spare, 1);
+        res = sceNandReadPages(ppn, user, spare, 1);
         if (res < 0)
         {
         	//Printf("   Error reading page 0x%04X.\n", ppn);
