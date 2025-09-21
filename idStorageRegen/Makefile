@@ -1,9 +1,10 @@
-release: all
+PSPSDK=$(shell psp-config --pspsdk-path)
+ARKSDK ?= ../../ark-dev-sdk
 
 TARGET = idsregeneration
-OBJS = main.o aes_core.o exports.o
+OBJS = main.o exports.o src/idsregeneration.o src/aes_core.o
 
-INCDIR = $(ARKROOT)/common/include
+INCDIR = include $(ARKSDK)/include
 CFLAGS = -O2 -Os -G0 -Wall -fshort-wchar -fno-pic -mno-check-zero-division 
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CFLAGS)
@@ -15,13 +16,7 @@ USE_KERNEL_LIBC = 1
 USE_KERNEL_LIBS = 1
 
 LDFLAGS = -nostdlib -nodefaultlibs
-LIBDIR = $(ARKROOT)/libs
-LIBS = -lpspdisplay_driver -lpspnand_driver -lpspsystemctrl_kernel -lpsplflash_fatfmt
+LIBDIR = $(ARKSDK)/libs
+LIBS = -lpspsystemctrl_kernel -lpspdisplay_driver -lpspnand_driver -lpsplflash_fatfmt
 
-all:
-	psp-packer $(TARGET).prx
-
-include $(ARKROOT)/common/make/global.mak
-PSPSDK=$(shell psp-config --pspsdk-path)
 include $(PSPSDK)/lib/build.mak
-include $(ARKROOT)/common/make/beauty.mak
