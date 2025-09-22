@@ -1,4 +1,5 @@
-release: all
+PSPSDK=$(shell psp-config --pspsdk-path)
+ARKSDK ?= ../../ark-dev-sdk
 
 TARGET = ipl_update
 OBJS = main.o imports.o
@@ -6,7 +7,6 @@ OBJS = main.o imports.o
 CFLAGS = -O2 -G0 -Wall -fno-pic
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CFLAGS)
-ARKSDK ?= ../../ark-dev-sdk
 INCDIR = $(ARKSDK)/include
 
 
@@ -20,5 +20,4 @@ LIBDIR = $(ARKSDK)/libs
 LDFLAGS = -nostartfiles
 LIBS = -lpspnand_driver -lpspsystemctrl_kernel
 
-PSPSDK=$(shell psp-config --pspsdk-path)
 include $(PSPSDK)/lib/build.mak

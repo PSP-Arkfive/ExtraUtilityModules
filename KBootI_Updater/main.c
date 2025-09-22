@@ -15,15 +15,17 @@
  * along with PRO CFW. If not, see <http://www.gnu.org/licenses/ .
  */
 
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 #include <pspsdk.h>
 #include <pspkernel.h>
 #include <pspdebug.h>
 #include <psploadcore.h>
 #include <pspiofilemgr.h>
 #include <pspdisplay.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+
+#include <systemctrl.h>
 
 PSP_MODULE_INFO("kbooti_update", 0x1006, 1, 0);
 PSP_MAIN_THREAD_ATTR(0);
@@ -218,7 +220,7 @@ int pspKbootiUpdateKbooti(u8 *cIplBlock, u32 cIplBlockSize)
     ret = sceIoRead(fd, g_buf + 0x40, IPL_BLOCK_SIZE);
 
     while (ret > 0) {
-        descramble_kirk_header(g_buf + 0x40);
+        descramble_kirk_header((void*)(g_buf + 0x40));
 
         //decrypt ipl block
         ret = sceUtilsBufferCopyWithRange(g_buf2, sizeof(g_buf2), g_buf + 0x40, IPL_BLOCK_SIZE, 1);
