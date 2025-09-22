@@ -132,7 +132,7 @@ void PatchPops(SceModule* mod)
     sceKernelDcacheWritebackAll();
 }
 
-int PeopsOnModuleStart(SceModule * mod){
+void PeopsOnModuleStart(SceModule * mod){
 
     // Patch PSP POPS SPU
     if (strcmp(mod->modname, "pops") == 0)
@@ -141,8 +141,7 @@ int PeopsOnModuleStart(SceModule * mod){
     }
 
     // Forward to previous Handler
-    if(previous) return previous(mod);
-    return 0;
+    if(previous) previous(mod);
 }
 
 int module_start(SceSize args, void *argp)
