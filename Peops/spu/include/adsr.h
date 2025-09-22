@@ -1,5 +1,5 @@
 /***************************************************************************
-                           StdAfx.h  -  description
+                           adsr.h  -  description
                              -------------------
     begin                : Wed May 15 2002
     copyright            : (C) 2002 by Pete Bernert
@@ -24,26 +24,5 @@
 //
 //*************************************************************************//
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <unistd.h>
-#define RRand(range) (random()%range)  
-#include <string.h> 
-#include <sys/time.h>  
-#include <math.h>  
-
-#include "audio.h"
-#include "psp.h"
-
-#undef CALLBACK
-#define CALLBACK
-#define DWORD unsigned long
-#define LOWORD(l)           ((unsigned short)(l)) 
-#define HIWORD(l)           ((unsigned short)(((unsigned long)(l) >> 16) & 0xFFFF)) 
-
-#define INLINE inline
-
-#include "decode_xa.h"
+void StartADSR(SPUCHAN * pChannel);
+int  MixADSR(SPUCHAN * pChannel);

@@ -80,7 +80,7 @@ void SetREVERB(unsigned short val)
 // START REVERB
 ////////////////////////////////////////////////////////////////////////
 
-INLINE void StartREVERB(SPUCHAN * pChannel)
+void StartREVERB(SPUCHAN * pChannel)
 {
  if(pChannel->bReverb && (spuCtrl&0x80))               // reverb possible?
   {
@@ -101,7 +101,7 @@ INLINE void StartREVERB(SPUCHAN * pChannel)
 // HELPER FOR NEILL'S REVERB: re-inits our reverb mixing buf
 ////////////////////////////////////////////////////////////////////////
 
-INLINE void InitREVERB(void)
+void InitREVERB(void)
 {
  if(iUseReverb==2)
   {memset(sRVBStart,0,NSSIZE*2*4);}
@@ -111,7 +111,7 @@ INLINE void InitREVERB(void)
 // STORE REVERB
 ////////////////////////////////////////////////////////////////////////
 
-INLINE void StoreREVERB(SPUCHAN * pChannel,int ns)
+void StoreREVERB(SPUCHAN * pChannel,int ns)
 {
  if(iUseReverb==0) return;
  else
@@ -148,7 +148,7 @@ INLINE void StoreREVERB(SPUCHAN * pChannel,int ns)
 
 ////////////////////////////////////////////////////////////////////////
 
-INLINE int g_buffer(int iOff)                          // get_buffer content helper: takes care about wraps
+int g_buffer(int iOff)                          // get_buffer content helper: takes care about wraps
 {
  short * p=(short *)spuMemC;
  iOff=(iOff*4)+rvb.CurrAddr;
@@ -159,31 +159,33 @@ INLINE int g_buffer(int iOff)                          // get_buffer content hel
 
 ////////////////////////////////////////////////////////////////////////
 
-INLINE void s_buffer(int iOff,int iVal)                // set_buffer content helper: takes care about wraps and clipping
+void s_buffer(int iOff,int iVal)                // set_buffer content helper: takes care about wraps and clipping
 {
  short * p=(short *)spuMemC;
  iOff=(iOff*4)+rvb.CurrAddr;
  while(iOff>0x3FFFF) iOff=rvb.StartAddr+(iOff-0x40000);
  while(iOff<rvb.StartAddr) iOff=0x3ffff-(rvb.StartAddr-iOff);
- if(iVal<-32768L) iVal=-32768L;if(iVal>32767L) iVal=32767L;
+ if(iVal<-32768L) iVal=-32768L;
+ if(iVal>32767L) iVal=32767L;
  *(p+iOff)=(short)iVal;
 }
 
 ////////////////////////////////////////////////////////////////////////
 
-INLINE void s_buffer1(int iOff,int iVal)                // set_buffer (+1 sample) content helper: takes care about wraps and clipping
+void s_buffer1(int iOff,int iVal)                // set_buffer (+1 sample) content helper: takes care about wraps and clipping
 {
  short * p=(short *)spuMemC;
  iOff=(iOff*4)+rvb.CurrAddr+1;
  while(iOff>0x3FFFF) iOff=rvb.StartAddr+(iOff-0x40000);
  while(iOff<rvb.StartAddr) iOff=0x3ffff-(rvb.StartAddr-iOff);
- if(iVal<-32768L) iVal=-32768L;if(iVal>32767L) iVal=32767L;
+ if(iVal<-32768L) iVal=-32768L;
+ if(iVal>32767L) iVal=32767L;
  *(p+iOff)=(short)iVal;
 }
 
 ////////////////////////////////////////////////////////////////////////
 
-INLINE int MixREVERBLeft(int ns)
+int MixREVERBLeft(int ns)
 {
  if(iUseReverb==0) return 0;
  else
@@ -279,7 +281,7 @@ INLINE int MixREVERBLeft(int ns)
 
 ////////////////////////////////////////////////////////////////////////
 
-INLINE int MixREVERBRight(void)
+int MixREVERBRight(void)
 {
  if(iUseReverb==0) return 0;
  else

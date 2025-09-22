@@ -1,11 +1,10 @@
 /***************************************************************************
-                           adsr.h  -  description
+                            xa.h  -  description
                              -------------------
     begin                : Wed May 15 2002
     copyright            : (C) 2002 by Pete Bernert
     email                : BlackDove@addcom.de
  ***************************************************************************/
-
 /***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -16,13 +15,6 @@
  *                                                                         *
  ***************************************************************************/
 
-//*************************************************************************//
-// History of changes:
-//
-// 2002/05/15 - Pete
-// - generic cleanup for the Peops release
-//
-//*************************************************************************//
-
-INLINE void StartADSR(SPUCHAN * pChannel);
-INLINE int  MixADSR(SPUCHAN * pChannel);
+void MixXA(void);
+void FeedXA(xa_decode_t *xap);
+void FeedCDDA(unsigned char *pcm, int nBytes);

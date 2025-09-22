@@ -69,7 +69,7 @@ void InitADSR(void)                                    // INIT ADSR
 
 ////////////////////////////////////////////////////////////////////////
 
-INLINE void StartADSR(SPUCHAN * pChannel)              // MIX ADSR
+void StartADSR(SPUCHAN * pChannel)              // MIX ADSR
 {
  pChannel->ADSRX.lVolume=1;                            // and init some adsr vars
  pChannel->ADSRX.State=0;
@@ -86,7 +86,7 @@ static const unsigned long int TableDisp[] = {
  -0x1B+9+32,-0x1B+10+32,-0x1B+11+32,-0x1B+12+32,
 };
 
-INLINE int MixADSR(SPUCHAN *ch)
+int MixADSR(SPUCHAN *ch)
 {    
  unsigned long int disp;
  signed long int EnvelopeVol = ch->ADSRX.EnvelopeVol;

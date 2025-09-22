@@ -22,6 +22,7 @@
                                
 #include "externals.h"
 #include "regs.h"
+#include "xa.h"
  
 ////////////////////////////////////////////////////////////////////////
 // globals
@@ -80,7 +81,7 @@ static int iSecureStart=0; // secure start counter
 #include "reverb.c"        
 #include "adsr.c"
 
-INLINE void InterpolateUp(SPUCHAN * pChannel)
+void InterpolateUp(SPUCHAN * pChannel)
 {
  if(pChannel->SB[32]==1)                               // flag == 1? calc step and set flag... and don't change the value in this pass
   {
@@ -128,7 +129,7 @@ INLINE void InterpolateUp(SPUCHAN * pChannel)
 // even easier interpolation on downsampling, also no special filter, again just "Pete's common sense" tm
 //
 
-INLINE void InterpolateDown(SPUCHAN * pChannel)
+void InterpolateDown(SPUCHAN * pChannel)
 {
  if(pChannel->sinc>=0x20000L)                                // we would skip at least one val?
   {
@@ -154,7 +155,7 @@ INLINE void InterpolateDown(SPUCHAN * pChannel)
 // START SOUND... called by main thread to setup a new sound on a channel
 ////////////////////////////////////////////////////////////////////////
 
-INLINE void StartSound(SPUCHAN * pChannel)
+void StartSound(SPUCHAN * pChannel)
 {
  StartADSR(pChannel);
  StartREVERB(pChannel);      
@@ -181,7 +182,7 @@ INLINE void StartSound(SPUCHAN * pChannel)
 // ALL KIND OF HELPERS
 ////////////////////////////////////////////////////////////////////////
 
-INLINE void VoiceChangeFrequency(SPUCHAN * pChannel)
+void VoiceChangeFrequency(SPUCHAN * pChannel)
 {
  pChannel->iUsedFreq=pChannel->iActFreq;               // -> take it and calc steps
  pChannel->sinc=pChannel->iRawPitch<<4;
@@ -191,7 +192,7 @@ INLINE void VoiceChangeFrequency(SPUCHAN * pChannel)
 
 ////////////////////////////////////////////////////////////////////////
 
-INLINE void FModChangeFrequency(SPUCHAN * pChannel,int ns)
+void FModChangeFrequency(SPUCHAN * pChannel,int ns)
 {
  int NP=pChannel->iRawPitch;
 
@@ -217,7 +218,7 @@ INLINE void FModChangeFrequency(SPUCHAN * pChannel,int ns)
 // surely wrong... and no noise frequency (spuCtrl&0x3f00) will be used...
 // and sometimes the noise will be used as fmod modulation... pfff
 
-INLINE int iGetNoiseVal(SPUCHAN * pChannel)
+int iGetNoiseVal(SPUCHAN * pChannel)
 {
  int fa;
 
@@ -242,7 +243,7 @@ INLINE int iGetNoiseVal(SPUCHAN * pChannel)
 
 ////////////////////////////////////////////////////////////////////////
 
-INLINE void StoreInterpolationVal(SPUCHAN * pChannel,int fa)
+void StoreInterpolationVal(SPUCHAN * pChannel,int fa)
 {
  if(pChannel->bFMod==2)                                // fmod freq channel
   pChannel->SB[29]=fa;
@@ -277,7 +278,7 @@ INLINE void StoreInterpolationVal(SPUCHAN * pChannel,int fa)
 
 ////////////////////////////////////////////////////////////////////////
 
-INLINE int iGetInterpolationVal(SPUCHAN * pChannel)
+int iGetInterpolationVal(SPUCHAN * pChannel)
 {
  int fa;
 
@@ -540,13 +541,16 @@ ENDX:   ;
     SSumL[ns]+=MixREVERBLeft(ns);
                                               
     d=SSumL[ns]/voldiv;SSumL[ns]=0;
-    if(d<-32767) d=-32767;if(d>32767) d=32767;
+    if(d<-32767) d=-32767;
+    if(d>32767) d=32767;
     *pS++=d;
         
     SSumR[ns]+=MixREVERBRight();
 
-    d=SSumR[ns]/voldiv;SSumR[ns]=0;
-    if(d<-32767) d=-32767;if(d>32767) d=32767;
+    d=SSumR[ns]/voldiv;
+    SSumR[ns]=0;
+    if(d<-32767) d=-32767;
+    if(d>32767) d=32767;
     *pS++=d;
    }
 

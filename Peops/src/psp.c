@@ -19,8 +19,8 @@
 #include <common.h>
 #include "main.h"
 
-#include "spu/stdafx.h"
-#include "spu/externals.h"
+#include "stdafx.h"
+#include "externals.h"
 
 void *malloc(size_t size)
 {

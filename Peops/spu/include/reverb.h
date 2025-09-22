@@ -26,5 +26,5 @@
 
 
 void SetREVERB(unsigned short val);
-INLINE void StartREVERB(SPUCHAN * pChannel);
-INLINE void StoreREVERB(SPUCHAN * pChannel,int ns);
+void StartREVERB(SPUCHAN * pChannel);
+void StoreREVERB(SPUCHAN * pChannel,int ns);

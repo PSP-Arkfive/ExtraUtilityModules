@@ -1,10 +1,11 @@
 /***************************************************************************
-                            xa.h  -  description
+                           StdAfx.h  -  description
                              -------------------
     begin                : Wed May 15 2002
     copyright            : (C) 2002 by Pete Bernert
     email                : BlackDove@addcom.de
  ***************************************************************************/
+
 /***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -15,6 +16,34 @@
  *                                                                         *
  ***************************************************************************/
 
-INLINE void MixXA(void);
-INLINE void FeedXA(xa_decode_t *xap);
-INLINE void FeedCDDA(unsigned char *pcm, int nBytes);
+//*************************************************************************//
+// History of changes:
+//
+// 2002/05/15 - Pete
+// - generic cleanup for the Peops release
+//
+//*************************************************************************//
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <unistd.h>
+#define RRand(range) (random()%range)  
+#include <string.h> 
+#include <sys/time.h>  
+#include <math.h>  
+
+#include "audio.h"
+#include "psp.h"
+
+#undef CALLBACK
+#define CALLBACK
+#define DWORD unsigned long
+#define LOWORD(l)           ((unsigned short)(l)) 
+#define HIWORD(l)           ((unsigned short)(((unsigned long)(l) >> 16) & 0xFFFF)) 
+
+#define inline
+
+#include "decode_xa.h"

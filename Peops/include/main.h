@@ -19,7 +19,7 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
-#include "spu/stdafx.h"
+#include "stdafx.h"
 
 void CALLBACK SPUupdate(void);
 void CALLBACK SPUplayADPCMchannel(xa_decode_t *xap);

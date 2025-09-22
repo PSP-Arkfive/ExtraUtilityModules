@@ -16,16 +16,16 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <common.h>
-#include <macros.h>
-#include <module2.h>
-#include "main.h"
 
-#include "spu/stdafx.h"
+#include <cfwmacros.h>
+#include <systemctrl.h>
+
+#include "common.h"
+#include "main.h"
 
 PSP_MODULE_INFO("peops", 0x0007, 1, 0);
 
-void (*previous)(void*);
+STMOD_HANDLER previous;
 
 void (* spuWriteRegister)(int reg, int val, int type);
 void (* cdrTransferSector)(u8 *sector, int mode);
@@ -116,7 +116,7 @@ void cdrWriteRegisterPatched(int reg, int val)
     cdrWriteRegister(reg, val);
 }
 
-void PatchPops(SceModule2* mod)
+void PatchPops(SceModule* mod)
 {
 
     u32 text_addr = mod->text_addr;
@@ -132,7 +132,7 @@ void PatchPops(SceModule2* mod)
     sceKernelDcacheWritebackAll();
 }
 
-void PeopsOnModuleStart(SceModule2 * mod){
+int PeopsOnModuleStart(SceModule * mod){
 
     // Patch PSP POPS SPU
     if (strcmp(mod->modname, "pops") == 0)
@@ -141,8 +141,8 @@ void PeopsOnModuleStart(SceModule2 * mod){
     }
 
     // Forward to previous Handler
-    if(previous) previous(mod);
-
+    if(previous) return previous(mod);
+    return 0;
 }
 
 int module_start(SceSize args, void *argp)

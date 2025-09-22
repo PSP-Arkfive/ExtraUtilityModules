@@ -18,8 +18,8 @@
 
 #include <common.h>
 
-#include "spu/stdafx.h"
-#include "spu/externals.h"
+#include "stdafx.h"
+#include "externals.h"
 
 #define BUFFER_SIZE    22050
 #define PSP_NUM_AUDIO_SAMPLES 1024
