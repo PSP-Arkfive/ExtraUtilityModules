@@ -132,7 +132,7 @@ void PatchPops(SceModule* mod)
     sceKernelDcacheWritebackAll();
 }
 
-void PeopsOnModuleStart(SceModule * mod){
+int PeopsOnModuleStart(SceModule * mod){
 
     // Patch PSP POPS SPU
     if (strcmp(mod->modname, "pops") == 0)

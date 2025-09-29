@@ -280,7 +280,7 @@ int module_start(SceSize args, void *argp)
 
         if (!PatchSyscall)
         {
-        	asm("break\n");
+        	__asm("break\n");
         	return 1;
         }
     }
