@@ -1,10 +1,9 @@
 PSPSDK=$(shell psp-config --pspsdk-path)
-ARKSDK ?= ../../ark-dev-sdk
 
 TARGET = kpspident
 OBJS = main.o imports.o
 
-INCDIR = $(ARKSDK)/include
+INCDIR = 
 CFLAGS = -Os -G0 -Wall -fno-pic
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CFLAGS)
@@ -15,7 +14,7 @@ PRX_EXPORTS = exports.exp
 USE_KERNEL_LIBC = 1
 USE_KERNEL_LIBS = 1
 
-LIBDIR = $(ARKSDK)/libs
+LIBDIR = 
 LDFLAGS = -nostartfiles
 LIBS =
 

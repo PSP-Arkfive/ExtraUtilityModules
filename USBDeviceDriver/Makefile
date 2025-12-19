@@ -1,10 +1,9 @@
 PSPSDK=$(shell psp-config --pspsdk-path)
-ARKSDK ?= ../../ark-dev-sdk
 
 TARGET = usbdevice
 OBJS = main.o exports.o
 
-INCDIR =  $(ARKSDK)/include
+INCDIR = 
 CFLAGS = -Os -G0 -Wall -fshort-wchar -fno-pic -mno-check-zero-division 
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CFLAGS)
@@ -16,7 +15,7 @@ PRX_EXPORTS = exports.exp
 USE_KERNEL_LIBC = 1
 USE_KERNEL_LIBS = 1
 
-LIBDIR = $(ARKSDK)/libs
+LIBDIR = 
 LIBS = -lpspsystemctrl_kernel -lpspumd_kernel -lpspkubridge
 
 include $(PSPSDK)/lib/build_prx.mak
