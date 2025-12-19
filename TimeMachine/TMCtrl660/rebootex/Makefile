@@ -14,9 +14,9 @@ LD = psp-ld
 STRIP = psp-strip
 OBJCOPY = psp-objcopy
 LINKFILE = $(ARKSDK)/build-tools/bootloadex.l
-INCDIR = $(PSPSDK)/include
+INCDIR = $(PSPSDK)/include $(PSPSDK)/include/iplsdk
 CFLAGS = -std=c99 -Wall -Os -G0 -fno-pic $(addprefix -I, $(INCDIR))
-LIBS = -L $(PSPSDK)/lib -lbootloadex -lansic
+LIBS = -L $(PSPSDK)/lib -lbootloadex -liplsdk -lansic
 
 
 ifdef DEBUG
