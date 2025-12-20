@@ -1,7 +1,7 @@
 PSPSDK=$(shell psp-config --pspsdk-path)
 
 TARGET = kpspident
-OBJS = main.o imports.o
+OBJS = main.o
 
 INCDIR = 
 CFLAGS = -Os -G0 -Wall -fno-pic
