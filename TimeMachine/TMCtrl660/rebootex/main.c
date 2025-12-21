@@ -10,12 +10,16 @@
 
 #define REG32(addr) *((volatile uint32_t *)(addr))
 
-ExtraIoFuncs iofuncs = {
-    .psp_io = {
-        .FatMount = &MsFatMount,
-        .FatOpen = &MsFatOpen,
-        .FatRead = &MsFatRead,
-        .FatClose = &MsFatClose,
+BootLoadExConfig bleconfig = {
+    .boot_type = TYPE_REBOOTEX,
+    .boot_storage = MS_BOOT,
+    .extra_io = {
+        .psp_io = {
+            .FatMount = &MsFatMount,
+            .FatOpen = &MsFatOpen,
+            .FatRead = &MsFatRead,
+            .FatClose = &MsFatClose,
+        }
     }
 };
 
@@ -34,13 +38,13 @@ int cfwBoot(int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7
     syscon_ctrl_ms_power(1);
 
     // Configure
-    bootConfig(MS_BOOT, TYPE_REBOOTEX, &iofuncs);
+    configureBoot(&bleconfig);
 
     // scan functions
     findBootFunctions();
     
     // patch sceboot
-    patchBootPSP();
+    patchBootPSP(&UnpackBootConfigPSP_ARK);
     
     // Forward Call
     return sceReboot(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
