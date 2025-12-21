@@ -19,6 +19,7 @@ all:
 	$(Q)cp PSPIdentHelper/*.prx dist/
 	$(Q)$(MAKE) -C USBDeviceDriver
 	$(Q)cp USBDeviceDriver/*.prx dist/
+	$(Q)echo 'All Done!'
 
 
 clean:
