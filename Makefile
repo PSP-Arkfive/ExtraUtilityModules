@@ -1,5 +1,3 @@
-BOOTLOADEX ?= $(CURDIR)/../BootLoadEx
-
 all:
 	$(Q)mkdir -p dist
 	$(Q)cp pre-built/*.prx dist/
@@ -21,11 +19,6 @@ all:
 	$(Q)cp PSPIdentHelper/*.prx dist/
 	$(Q)$(MAKE) -C USBDeviceDriver
 	$(Q)cp USBDeviceDriver/*.prx dist/
-	$(Q)$(MAKE) BOOTLOADEX=$(BOOTLOADEX) -C TimeMachine/TMCtrl660/rebootex
-	$(Q)$(MAKE) -C TimeMachine/TMCtrl660
-	$(Q)cp TimeMachine/TMCtrl660/*.prx dist/
-	$(Q)$(MAKE) -C TimeMachine/TMCtrl150
-	$(Q)cp TimeMachine/TMCtrl150/*.prx dist/
 
 
 clean:
@@ -38,7 +31,4 @@ clean:
 	$(Q)$(MAKE) -C PSPFTP clean
 	$(Q)$(MAKE) -C PSPIdentHelper clean
 	$(Q)$(MAKE) -C USBDeviceDriver clean
-	$(Q)$(MAKE) BOOTLOADEX=$(BOOTLOADEX) -C TimeMachine/TMCtrl660/rebootex clean
-	$(Q)$(MAKE) -C TimeMachine/TMCtrl660 clean
-	$(Q)$(MAKE) -C TimeMachine/TMCtrl150 clean
 	$(Q)rm -rf dist
