@@ -1,24 +1,24 @@
 all:
-	$(Q)mkdir -p dist
-	$(Q)cp pre-built/*.prx dist/
+	$(Q)mkdir -p dist/PSP/LIBS
+	$(Q)cp pre-built/*.prx dist/PSP/LIBS/
 	$(Q)$(MAKE) -C idStorageRegen
-	$(Q)cp idStorageRegen/*.prx dist/
+	$(Q)cp idStorageRegen/*.prx dist/PSP/LIBS/
 	$(Q)$(MAKE) -C IOPrivileged
-	$(Q)cp IOPrivileged/*.prx dist/
+	$(Q)cp IOPrivileged/*.prx dist/PSP/LIBS/
 	$(Q)$(MAKE) -C IPL_Updater
-	$(Q)cp IPL_Updater/*.prx dist/
+	$(Q)cp IPL_Updater/*.prx dist/PSP/LIBS/
 	$(Q)$(MAKE) -C KBooti_Updater
-	$(Q)cp KBooti_Updater/*.prx dist/
+	$(Q)cp KBooti_Updater/*.prx dist/PSP/LIBS/
 	$(Q)$(MAKE) -C Peops
-	$(Q)cp Peops/*.prx dist/
+	$(Q)cp Peops/*.prx dist/PSP/LIBS/
 	$(Q)$(MAKE) -C PSPAV
-	$(Q)cp PSPAV/*.prx dist/
+	$(Q)cp PSPAV/*.prx dist/PSP/LIBS/
 	$(Q)$(MAKE) -C PSPFTP
-	$(Q)cp PSPFTP/*.prx dist/
+	$(Q)cp PSPFTP/*.prx dist/PSP/LIBS/
 	$(Q)$(MAKE) -C PSPIdentHelper
-	$(Q)cp PSPIdentHelper/*.prx dist/
+	$(Q)cp PSPIdentHelper/*.prx dist/PSP/LIBS/
 	$(Q)$(MAKE) -C USBDeviceDriver
-	$(Q)cp USBDeviceDriver/*.prx dist/
+	$(Q)cp USBDeviceDriver/*.prx dist/PSP/LIBS/
 	$(Q)echo 'All Done!'
 
 
