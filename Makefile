@@ -19,6 +19,8 @@ all:
 	$(Q)cp PSPIdentHelper/*.prx dist/PSP/LIBS/
 	$(Q)$(MAKE) -C USBDeviceDriver
 	$(Q)cp USBDeviceDriver/*.prx dist/PSP/LIBS/
+	$(Q)$(MAKE) -C intraFont-GU
+	$(Q)cp intraFont-GU/*.prx dist/PSP/LIBS/
 	$(Q)echo 'All Done!'
 
 
@@ -32,4 +34,5 @@ clean:
 	$(Q)$(MAKE) -C PSPFTP clean
 	$(Q)$(MAKE) -C PSPIdentHelper clean
 	$(Q)$(MAKE) -C USBDeviceDriver clean
+	$(Q)$(MAKE) -C intraFont-GU clean
 	$(Q)rm -rf dist
