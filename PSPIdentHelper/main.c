@@ -4,6 +4,7 @@
 #include <pspsdk.h>
 #include <pspkernel.h>
 #include <pspdebug.h>
+#include <pspsyscon.h>
 #include <psploadcore.h>
 #include <pspiofilemgr.h>
 #include <pspdisplay.h>
@@ -12,21 +13,21 @@ PSP_MODULE_INFO("kpspident", 0x1006, 1, 0);
 PSP_MAIN_THREAD_ATTR(0);
 
 
-int sceSysconGetBaryonVersion(u32 *baryon) {
+int pspSysconGetBaryonVersion(u32 *baryon) {
     int k1 = pspSdkSetK1(0);
-    int err = sceSysconGetBaryonVersion(baryon);
+    int err = sceSysconGetBaryonVersion((int*)baryon);
     pspSdkSetK1(k1);
     return err;
 }
 
-int sceSysconGetPommelVersion(u32 *pommel) {
+int pspSysconGetPommelVersion(u32 *pommel) {
     int k1 = pspSdkSetK1(0);
-    int err = sceSysconGetPommelVersion(pommel);
+    int err = sceSysconGetPommelVersion((int*)pommel);
     pspSdkSetK1(k1);
     return err;
 }
 
-int sceSysregGetTachyonVersion(void) {
+int pspSysregGetTachyonVersion(void) {
     int k1 = pspSdkSetK1(0);
     int err = sceSysregGetTachyonVersion();
     pspSdkSetK1(k1);
