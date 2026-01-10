@@ -13,6 +13,14 @@ PSP_EXPORT_FUNC(pspavPlayAT3)
 # PMF/MPS
 PSP_EXPORT_FUNC(pspavPlayGamePMF)
 PSP_EXPORT_FUNC(pspavPlayVideoFile)
+# MP3
+PSP_EXPORT_FUNC(pspavPlayMP3File)
+PSP_EXPORT_FUNC(pspavIsMP3Active)
+PSP_EXPORT_FUNC(pspavIsMP3Paused)
+PSP_EXPORT_FUNC(pspavStopMP3Playback)
+PSP_EXPORT_FUNC(pspavResumeOrPauseMP3Playback)
+PSP_EXPORT_FUNC(pspavPauseMP3Playback)
+PSP_EXPORT_FUNC(pspavResumeMP3Playback)
 PSP_EXPORT_END
 
 PSP_END_EXPORTS
