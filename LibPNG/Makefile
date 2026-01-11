@@ -13,7 +13,7 @@ INCDIR =
 CFLAGS = -std=c99 -O2 -G0
 CXXFLAGS = $(CFLAGS)	
 ASFLAGS = $(CFLAGS)
-LIBDIR = $(ARKROOT)/libs
+LIBDIR = 
 LDFLAGS = -nostartfiles
 LIBS = -lpng -lz -lm -lpspsysc_user
 
