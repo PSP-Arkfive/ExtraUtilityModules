@@ -12,7 +12,7 @@ LDFLAGS = -nostartfiles
 BUILD_PRX = 1
 PRX_EXPORTS = exports.exp
 
-INCDIR = include
+INCDIR = 
 LIBDIR = 
 
 USE_PSPSDK_LIBS = 1

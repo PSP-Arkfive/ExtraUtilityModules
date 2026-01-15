@@ -7,8 +7,8 @@ target_sources(iop PRIVATE
 )
 
 target_compile_options(iop PRIVATE -O2 -Os -G0 -Wall -fshort-wchar -fno-pic -mno-check-zero-division)
-target_include_directories(iop PRIVATE ${ARKSDK}/include)
-target_link_directories(iop PRIVATE ${ARKSDK}/libs)
+target_include_directories(iop PRIVATE ${CFWSDK}/include)
+target_link_directories(iop PRIVATE ${CFWSDK}/libs)
 target_link_libraries(iop PRIVATE
    -nostartfiles
    -nostdlib

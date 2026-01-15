@@ -8,8 +8,8 @@ target_sources(ipl_update PRIVATE
 )
 
 target_compile_options(ipl_update PRIVATE -O2 -G0 -Wall -fno-pic)
-target_include_directories(ipl_update PRIVATE ./ ${ARKSDK}/include)
-target_link_directories(ipl_update PRIVATE ${ARKSDK}/libs)
+target_include_directories(ipl_update PRIVATE ./ ${CFWSDK}/include)
+target_link_directories(ipl_update PRIVATE ${CFWSDK}/libs)
 target_link_libraries(ipl_update PRIVATE
    -nostartfiles
    -nostdlib

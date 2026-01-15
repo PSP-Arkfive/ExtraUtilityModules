@@ -13,8 +13,8 @@ target_sources(peops PRIVATE
 )
 
 target_compile_options(peops PRIVATE -O3 -Os -G0 -Wall -fshort-wchar -fno-pic -mno-check-zero-division)
-target_include_directories(peops PRIVATE include spu/include ${ARKSDK}/include)
-target_link_directories(peops PRIVATE ${ARKSDK}/libs)
+target_include_directories(peops PRIVATE include spu/include ${CFWSDK}/include)
+target_link_directories(peops PRIVATE ${CFWSDK}/libs)
 target_link_libraries(peops PRIVATE
    pspsystemctrl_user
    pspaudio

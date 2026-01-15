@@ -7,8 +7,8 @@ target_sources(usbdevice PRIVATE
 )
 
 target_compile_options(usbdevice PRIVATE -Os -G0 -Wall -fshort-wchar -fno-pic -mno-check-zero-division )
-target_include_directories(usbdevice PRIVATE ${ARKSDK}/include)
-target_link_directories(usbdevice PRIVATE ${ARKSDK}/libs)
+target_include_directories(usbdevice PRIVATE ${CFWSDK}/include)
+target_link_directories(usbdevice PRIVATE ${CFWSDK}/libs)
 target_link_libraries(usbdevice PRIVATE
    -nostartfiles
    -nostdlib

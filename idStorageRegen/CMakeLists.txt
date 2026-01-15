@@ -9,8 +9,8 @@ target_sources(idsregeneration PRIVATE
 )
 
 target_compile_options(idsregeneration PRIVATE -O2 -Os -G0 -Wall -fshort-wchar -fno-pic -mno-check-zero-division)
-target_include_directories(idsregeneration PRIVATE include ${ARKSDK}/include)
-target_link_directories(idsregeneration PRIVATE ${ARKSDK}/libs)
+target_include_directories(idsregeneration PRIVATE include ${CFWSDK}/include)
+target_link_directories(idsregeneration PRIVATE ${CFWSDK}/libs)
 target_link_libraries(idsregeneration PRIVATE
    -nostartfiles
    -nostdlib

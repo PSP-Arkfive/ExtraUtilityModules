@@ -7,8 +7,8 @@ target_sources(kbooti_update PRIVATE
 )
 
 target_compile_options(kbooti_update PRIVATE -Os -G0 -Wall -fno-pic -std=c99)
-target_include_directories(kbooti_update PRIVATE ${ARKSDK}/include)
-target_link_directories(kbooti_update PRIVATE ${ARKSDK}/libs)
+target_include_directories(kbooti_update PRIVATE ${CFWSDK}/include)
+target_link_directories(kbooti_update PRIVATE ${CFWSDK}/libs)
 target_link_libraries(kbooti_update PRIVATE
    -nostartfiles
    -nostdlib
