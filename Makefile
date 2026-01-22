@@ -1,30 +1,24 @@
 all:
-	$(Q)mkdir -p dist/PSP/LIBS
-	$(Q)cp pre-built/*.prx dist/PSP/LIBS/
+	$(Q)mkdir -p dist/LIBS
+	$(Q)cp pre-built/*.prx dist/LIBS/
 	$(Q)$(MAKE) -C idStorageRegen
-	$(Q)cp idStorageRegen/*.prx dist/PSP/LIBS/
+	$(Q)cp idStorageRegen/*.prx dist/LIBS/
 	$(Q)$(MAKE) -C IOPrivileged
-	$(Q)cp IOPrivileged/*.prx dist/PSP/LIBS/
+	$(Q)cp IOPrivileged/*.prx dist/LIBS/
 	$(Q)$(MAKE) -C IPL_Updater
-	$(Q)cp IPL_Updater/*.prx dist/PSP/LIBS/
+	$(Q)cp IPL_Updater/*.prx dist/LIBS/
 	$(Q)$(MAKE) -C KBooti_Updater
-	$(Q)cp KBooti_Updater/*.prx dist/PSP/LIBS/
+	$(Q)cp KBooti_Updater/*.prx dist/LIBS/
 	$(Q)$(MAKE) -C Peops
-	$(Q)cp Peops/*.prx dist/PSP/LIBS/
+	$(Q)cp Peops/*.prx dist/LIBS/
 	$(Q)$(MAKE) -C PSPAV
-	$(Q)cp PSPAV/*.prx dist/PSP/LIBS/
+	$(Q)cp PSPAV/*.prx dist/LIBS/
 	$(Q)$(MAKE) -C PSPFTP
-	$(Q)cp PSPFTP/*.prx dist/PSP/LIBS/
+	$(Q)cp PSPFTP/*.prx dist/LIBS/
 	$(Q)$(MAKE) -C PSPIdentHelper
-	$(Q)cp PSPIdentHelper/*.prx dist/PSP/LIBS/
+	$(Q)cp PSPIdentHelper/*.prx dist/LIBS/
 	$(Q)$(MAKE) -C USBDeviceDriver
-	$(Q)cp USBDeviceDriver/*.prx dist/PSP/LIBS/
-	$(Q)$(MAKE) -C intraFont-GU
-	$(Q)cp intraFont-GU/*.prx dist/PSP/LIBS/
-	$(Q)$(MAKE) -C Unarchiver
-	$(Q)cp Unarchiver/*.prx dist/PSP/LIBS/
-	$(Q)$(MAKE) -C LibPNG
-	$(Q)cp LibPNG/*.prx dist/PSP/LIBS/
+	$(Q)cp USBDeviceDriver/*.prx dist/LIBS/
 	$(Q)echo 'All Done!'
 
 
@@ -38,7 +32,4 @@ clean:
 	$(Q)$(MAKE) -C PSPFTP clean
 	$(Q)$(MAKE) -C PSPIdentHelper clean
 	$(Q)$(MAKE) -C USBDeviceDriver clean
-	$(Q)$(MAKE) -C intraFont-GU clean
-	$(Q)$(MAKE) -C Unarchiver clean
-	$(Q)$(MAKE) -C LibPNG clean
 	$(Q)rm -rf dist
